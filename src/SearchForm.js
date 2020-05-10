@@ -7,29 +7,38 @@ class SearchForm extends Component {
             search: ''
         }
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value
         })
+    }
+    handleSubmit(event) {
+        event.preventDefault();
         this.props.filter(this.state.search);
+        this.setState({
+            search: ''
+        });
     }
     render() {
         return (
             <div>
-                <div className="row">
-                    <div className="col">
-                        <input 
+                <form onSubmit={this.handleSubmit}>
+                    <div className="row">
+                            <div className="col">
+                            <input 
                             type="text"
                             name="search"
                             className="form-control"
                             placeholder="Search"
                             value={this.state.search}
                             onChange={this.handleChange}
-                            style={{width: "50vw"}}
-                        />
+                            />
+                        </div>
+                        <button>Search</button>
                     </div>
-                </div>        
+                </form>
             </div>
         )
     }
