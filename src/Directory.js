@@ -22,7 +22,7 @@ class Directory extends Component {
         .catch(err => console.log(err));
     }
     filterArray(text) {
-        if (text.toString().length > 0) {
+        if (text.toString().length > 0 || text !== "") {
             const filtered = this.state.employees.reduce((allEmployees, employee) => {
                 const array = Object.values(employee);
                 for (let i = 0; i < array.length; i++) {
